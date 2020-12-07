@@ -5,6 +5,3 @@
 *.csr
 *.key
 
-
-## Ignore the Binary
-[^\.]*
