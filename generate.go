@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/dustin/go-humanize"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 func humanTime(now, when time.Time) string {
@@ -37,7 +37,7 @@ Example usage:
 	notAfter := time.Unix(c.Int64("not-after"), 0)
 	now := time.Now()
 
-	path := c.GlobalString("root")
+	path := c.String("root")
 	bits := c.Int("bits")
 
 	if err := os.MkdirAll(path, 0700); err != nil {

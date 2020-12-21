@@ -8,7 +8,7 @@ import (
 
 	"crypto/x509"
 
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 func LoadEmployee(c *cli.Context) (*Employee, error) {
@@ -41,7 +41,7 @@ func LoadEmployee(c *cli.Context) (*Employee, error) {
 }
 
 func Sign(c *cli.Context) error {
-	path := c.GlobalString("root")
+	path := c.String("root")
 	ca, err := LoadCA(path)
 	if err != nil {
 		return err
@@ -52,7 +52,7 @@ func Sign(c *cli.Context) error {
 		return err
 	}
 
-	for _, el := range c.Args() {
+	for _, el := range os.Args {
 		fd, err := os.Open(el)
 		if err != nil {
 			return err

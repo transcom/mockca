@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 func ohnoes(err error) {
@@ -28,18 +28,21 @@ func main() {
 	app.Version = "1.0"
 
 	app.Flags = []cli.Flag{
-		cli.StringFlag{Name: "root", Value: "mockca"},
+		&cli.StringFlag{
+			Name:  "root",
+			Value: "mockca",
+		},
 	}
 
-	app.Commands = []cli.Command{
-		cli.Command{
+	app.Commands = []*cli.Command{
+		&cli.Command{
 			Name:   "generate",
 			Action: Wrapper(Generate),
 			Usage:  "generate",
 			Flags: []cli.Flag{
-				cli.IntFlag{Name: "bits", Value: 2048},
-				cli.IntFlag{Name: "not-before", Value: 0},
-				cli.IntFlag{Name: "not-after", Value: 0},
+				&cli.IntFlag{Name: "bits", Value: 2048},
+				&cli.IntFlag{Name: "not-before", Value: 0},
+				&cli.IntFlag{Name: "not-after", Value: 0},
 			},
 		},
 		cli.Command{
@@ -47,12 +50,12 @@ func main() {
 			Action: Wrapper(Sign),
 			Usage:  "sign",
 			Flags: []cli.Flag{
-				cli.StringFlag{Name: "first-name", Value: ""},
-				cli.StringFlag{Name: "last-name", Value: ""},
-				cli.StringFlag{Name: "middle-name", Value: ""},
-				cli.StringFlag{Name: "dod-id", Value: ""},
-				cli.StringFlag{Name: "email", Value: ""},
-				cli.StringFlag{Name: "org", Value: ""},
+				&cli.StringFlag{Name: "first-name", Value: ""},
+				&cli.StringFlag{Name: "last-name", Value: ""},
+				&cli.StringFlag{Name: "middle-name", Value: ""},
+				&cli.StringFlag{Name: "dod-id", Value: ""},
+				&cli.StringFlag{Name: "email", Value: ""},
+				&cli.StringFlag{Name: "org", Value: ""},
 			},
 		},
 	}
