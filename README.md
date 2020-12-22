@@ -13,8 +13,7 @@ Quick Start
 Usage
 -----
 
-```
-# First, generate the Certificate Authority files using the `-not-before` (beginning) and `-not-after` (expiry) flags.
+First, generate the Certificate Authority files using the `-not-before` (beginning) and `-not-after` (expiry) flags.
 
 Consult an [epoch time converter](https://www.epochconverter.com) to get the POSIX / UNIX time values required.
 
@@ -22,12 +21,14 @@ Consult an [epoch time converter](https://www.epochconverter.com) to get the POS
 ./mockca generate -not-before 1512436787 -not-after 1513436787
 ```
 
-# Somewhere else, on another computer, a user should create their CSR
-# and send the file `me.csr` to the person running the CA.
-$ openssl req -new -nodes -out me.csr -subj '/CN=new cert/'
+Somewhere else, on another computer, a user should create their CSR
+and send the file `me.csr` to the person running the CA.
+-----
+`openssl req -new -nodes -out me.csr -subj '/CN=new cert/'`
 
-# Later, we can take a CSR, and create a new Certificate that looks right
-# only using the CSR Public Key.
+Later, we can take a CSR, and create a new Certificate that looks right only using the CSR Public Key.
+-----
+
 ```bash
 ./mockca sign \
     -first-name Dustin \
